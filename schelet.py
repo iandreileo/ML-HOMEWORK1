@@ -105,27 +105,27 @@ class NPuzzle:
 # MLIMIT = 3 * 10 ** 9 # 2 GB RAM limit
 # setrlimit(RLIMIT_DATA, (MLIMIT, MLIMIT))
 
-f = open("files/problems4.txt", "r")
-input = f.readlines()
-f.close()
-problems = [NPuzzle.read_from_line(line) for line in input]
-problems[0].display()
+# f = open("files/problems4.txt", "r")
+# input = f.readlines()
+# f.close()
+# problems = [NPuzzle.read_from_line(line) for line in input]
+# problems[0].display()
 
 
 
-# generare
-def genOne(side, difficulty):
-	state = NPuzzle(list(range(side * side))[1:] + [NPuzzle.BLANK])
-	for i in range(side ** difficulty + random.choice(range(side ** (difficulty//2)))):
-		s = state.apply_move(random.choice(NPuzzle.ACTIONS))
-		if s is not None: state = s
-	state.clear_moves()
-	return state
+# # generare
+# def genOne(side, difficulty):
+# 	state = NPuzzle(list(range(side * side))[1:] + [NPuzzle.BLANK])
+# 	for i in range(side ** difficulty + random.choice(range(side ** (difficulty//2)))):
+# 		s = state.apply_move(random.choice(NPuzzle.ACTIONS))
+# 		if s is not None: state = s
+# 	state.clear_moves()
+# 	return state
 
-print("Generare:")
-random.seed(4242)
-p = genOne(3, 4)
-p.display()
+# print("Generare:")
+# random.seed(4242)
+# p = genOne(3, 4)
+# p.display()
 # problemele easy au fost generate cu dificultatile 4, 3, respectiv 2 (pentru marimile 4, 5, 6)
 # celelalte probleme au toate dificultate 6
 

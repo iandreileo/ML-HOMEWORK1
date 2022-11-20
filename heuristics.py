@@ -1,7 +1,24 @@
 # Euristica pentru Manhattan
 # Aplicam formula din laborator
 def manhattan_heuristic(a, b):
-    return sum(abs(val1-val2) for val1, val2 in zip(a.r,b.r))
+    array_a = a.r
+    array_b = b.r
+
+    sum = 0
+
+    for i in range(len(array_a)):
+        if(type(array_a[i]) == str and type(array_b[i]) == str):
+            sum = sum + abs(0)
+        
+        elif (type(array_a[i]) == str):
+            sum = sum + abs(- array_b[i])
+
+        elif (type(array_b[i]) == str):
+            sum = sum + abs(array_a[i])
+        else:
+            sum = sum + abs(array_a[i] - array_b[i])
+
+    return sum
 
 
 # Euristica pentru Hamming
