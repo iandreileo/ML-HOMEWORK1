@@ -35,8 +35,6 @@ def astar(start, end, h):
         
     # Nodurile descoperite ca dicționar nod -> (părinte, cost-până-la-nod)
     discovered = {start: (None, 0)}    
-
-    # print(discovered)
     
     # Marim frontiera
     while frontier:
@@ -49,13 +47,15 @@ def astar(start, end, h):
         # print(node.apply_move(4))
         print(get_neighbours(node))
 
+        # 
+        crt_g = discovered[node][1]
+
         # Testam daca s-a terminat
         if node.r == end.r:
             break
 
         # Mergem prin vecini
         for v_node in get_neighbours(node):
-            print(v_node)
             
 
             
