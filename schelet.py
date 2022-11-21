@@ -102,7 +102,7 @@ class NPuzzle:
 	
 
 
-# MLIMIT = 3 * 10 ** 9 # 2 GB RAM limit
+# MLIMIT = 5 * 10 ** 9 # 2 GB RAM limit
 # setrlimit(RLIMIT_DATA, (MLIMIT, MLIMIT))
 
 # f = open("files/problems4.txt", "r")

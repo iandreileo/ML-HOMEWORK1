@@ -19,5 +19,4 @@ if __name__ == '__main__':
     problem.display()
 
     astar = astar(problem, problem.solved(), manhattan_heuristic)
-
     print(astar)

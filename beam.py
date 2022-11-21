@@ -1,9 +1,11 @@
 from astar import *
 import functools
 from heuristics import *
+import time
 
 
 def beam_search(start, B, h, limita):
+    start_time = time.time()
     success = False
 
     # 1. beam = {start}
@@ -29,7 +31,7 @@ def beam_search(start, B, h, limita):
                     
                     # 7. daca vreuna dintre dintre starile din succ este stare scop 
                     if i.r == i.solved().r:
-                        return True
+                        return (time.time() - start_time, True)
 
         # 9. selectat = cele mai bune B stari, sortate dupa h(s)
         if len(succ) < B:
@@ -39,9 +41,9 @@ def beam_search(start, B, h, limita):
             selectat = sorted(succ, key=lambda x: h(x, x.solved()))[0:B]
 
         # 10. vizitat = vizitat ∪ selectat
-        vizitat += selectat
+        vizitat = vizitat + selectat
 
         # 11. beam = selectat 
         beam = selectat
         
-    return success
+    return (time.time() - start_time, False)
