@@ -18,9 +18,6 @@ def manhattan_heuristic(a, b):
         else:
             sum = sum + abs(array_a[i] - array_b[i])
 
-    # print(a.r, b.r, sum)
-
-
     return sum
 
 

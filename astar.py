@@ -1,4 +1,5 @@
 from heapq import heappop, heappush
+import time
 
 
 def get_neighbours(pos):
@@ -13,6 +14,8 @@ def get_neighbours(pos):
 
 
 def astar(start, end, h):
+    start_time = time.time()
+
     # Frontiera, ca listă (heap) de tupluri (cost-total-estimat, nod)
     frontier = []
     
@@ -51,4 +54,6 @@ def astar(start, end, h):
         path.append(current_node)
         current_node = discovered[current_node][0]
 
-    return path
+
+    # TODO: Numar de stari stocate in memorie
+    return (time.time() - start_time, len(path), path)
