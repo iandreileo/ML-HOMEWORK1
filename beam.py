@@ -3,8 +3,10 @@ import functools
 from heuristics import *
 import time
 
+MAX_EXECUTION_TIME = 60 * 3
 
 def beam_search(start, B, h, limita):
+
     start_time = time.time()
     success = False
 
@@ -18,10 +20,15 @@ def beam_search(start, B, h, limita):
 
     # 3. cat timp beam ̸= ∅ s, i |vizitat| < limita
     while len(beam) and len(vizitat) < limita:
+       
         succ = []
 
         # 5. pentru fiecare s ∈ beam
         for s in beam:
+
+            # De sters   
+            if((time.time() - start_time) > MAX_EXECUTION_TIME):
+                return (time.time() - start_time, None)
 
             # 6. succ = succ ∪ succesori(s)
             current_neighbours = get_neighbours(s)
@@ -45,5 +52,9 @@ def beam_search(start, B, h, limita):
 
         # 11. beam = selectat 
         beam = selectat
+
+        # De sters   
+        if((time.time() - start_time) > MAX_EXECUTION_TIME):
+            return (time.time() - start_time, None)
         
     return (time.time() - start_time, False)

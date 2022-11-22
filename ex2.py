@@ -100,14 +100,14 @@ def GLDS(start, h, limita):
 
 if __name__ == '__main__':
 
-    f = open("files/problems4-easy.txt", "r")
+    f = open("files/problems6-easy.txt", "r")
     # f = open("files/problems4 copy.txt", "r")
 
     input = f.readlines()
     f.close()
     problems = [NPuzzle.read_from_line(line) for line in input]
-    problem = problems[2]
+    problem = problems[1]
     problem.display()
 
-    print(GLDS(problem, manhattan_heuristic, 100))
+    print(GLDS(problem, linear_conflicts, 1000000))
 
