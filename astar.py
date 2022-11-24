@@ -1,6 +1,6 @@
 from heapq import heappop, heappush
 import time
-
+MAX_EXECUTION_TIME = 60 * 3
 
 def get_neighbours(pos):
     # Setam vecinii
@@ -26,6 +26,10 @@ def astar(start, end, h):
     
     # Marim frontiera
     while frontier:
+
+        if (time.time() - start_time) > MAX_EXECUTION_TIME:
+            return (time.time() - start_time, None)
+
         # Scoatem boardul curent
         s = heappop(frontier)
 

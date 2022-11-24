@@ -106,7 +106,7 @@ if __name__ == '__main__':
     input = f.readlines()
     f.close()
     problems = [NPuzzle.read_from_line(line) for line in input]
-    problem = problems[1]
+    problem = problems[0]
     problem.display()
 
     print(GLDS(problem, linear_conflicts, 1000000))

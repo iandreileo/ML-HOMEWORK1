@@ -1,4 +1,5 @@
 import math
+from tests.astar_tests import run_astar_tests
 
 from tests.beam_tests import run_beam_tests
 from heuristics import *
@@ -13,3 +14,4 @@ from beam import *
 if __name__ == '__main__':
 
     run_beam_tests()
+    # run_astar_tests()
