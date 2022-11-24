@@ -1,12 +1,14 @@
 from heapq import heappop, heappush
 import time
+
+from schelet import NPuzzle
 MAX_EXECUTION_TIME = 60 * 3
 
 def get_neighbours(pos):
     # Setam vecinii
     neighbours = []
 
-    for i in range(4):
+    for i in NPuzzle.ACTIONS:
         if pos.apply_move(i):
             neighbours.append(pos.apply_move(i))
 

@@ -24,17 +24,19 @@ def run_beam_tests():
 
     for problem_index in range(len(problems)):
 
-        for b in list(reversed(B)):
-            print("---- p =", problem_index, "-----")
-            print("---- b =", b, "-----")
+        if problem_index != 5:
 
-            beam_search1 = beam_search(problems[problem_index], b, linear_conflicts, 1000000)
-            print(problem_index, "," ,"LINEAR", ",", b, ",", beam_search1)
+            for b in list(reversed(B)):
+                print("---- p =", problem_index, "-----")
+                print("---- b =", b, "-----")
 
-            beam_search2 = beam_search(problems[problem_index], b, manhattan_heuristic, 1000000)
-            print(problem_index, "," ,"MANHATTAN",",", b, ",",  beam_search2)
+                beam_search1 = beam_search(problems[problem_index], b, linear_conflicts, 1000000)
+                print(problem_index, "," ,"LINEAR", ",", b, ",", beam_search1)
 
-            print("/---- b =", b, "-----\n")
+                beam_search2 = beam_search(problems[problem_index], b, manhattan_heuristic, 1000000)
+                print(problem_index, "," ,"MANHATTAN",",", b, ",",  beam_search2)
+
+                print("/---- b =", b, "-----\n")
 
 
     # Teste 5 EASY
