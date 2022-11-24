@@ -11,13 +11,12 @@ def beam_search(start, B, h, limita):
     success = False
 
     # 1. beam = {start}
-    beam = set()
-    beam.add(start)
-    # beam += [start]
+    beam = []
+    # beam.add(start)
+    beam += [start]
 
     # 2. vizitat = {start}
-    vizitat = set()
-    vizitat.add(start)
+    vizitat = {start: (None)}
 
     # 3. cat timp beam ̸= ∅ s, i |vizitat| < limita
     while len(beam) and len(vizitat) < limita:
@@ -48,13 +47,13 @@ def beam_search(start, B, h, limita):
         else:
             selectat = sorted(succ, key=lambda x: h(x, x.solved()))[0:B]
 
-        # print("\n\n")
-        # for i in selectat:
-        #     print(i, h(i, i.solved()))
-        # print("\n\n")
-
         # 10. vizitat = vizitat ∪ selectat
-        vizitat = vizitat.union(set(selectat))
+        for i in selectat:
+            vizitat[i] = (None)
+
+        # print(len(vizitat))
+
+        # vizitat = vizitat.union(selectat)
 
         # 11. beam = selectat 
         beam = selectat

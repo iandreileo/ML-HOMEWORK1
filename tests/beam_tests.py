@@ -15,28 +15,28 @@ def run_beam_tests():
     # BEAM SEARCH EASY
     
     # Teste 6 EASY
-    print("\n\n=BEAM SEARCH 6 EASY=\n")
-    f = open("files/problems6-easy.txt", "r")
+    # print("\n\n=BEAM SEARCH 6 EASY=\n")
+    # f = open("files/problems6-easy.txt", "r")
 
-    input = f.readlines()
-    f.close()
-    problems = [NPuzzle.read_from_line(line) for line in input]
+    # input = f.readlines()
+    # f.close()
+    # problems = [NPuzzle.read_from_line(line) for line in input]
 
-    for problem_index in range(len(problems)):
+    # for problem_index in range(len(problems)):
 
-        if problem_index != 5:
+    #     if problem_index == 4:
 
-            for b in list(reversed(B)):
-                print("---- p =", problem_index, "-----")
-                print("---- b =", b, "-----")
+    #         for b in list(reversed(B)):
+    #             print("---- p =", problem_index, "-----")
+    #             print("---- b =", b, "-----")
 
-                beam_search1 = beam_search(problems[problem_index], b, linear_conflicts, 1000000)
-                print(problem_index, "," ,"LINEAR", ",", b, ",", beam_search1)
+    #             beam_search1 = beam_search(problems[problem_index], b, linear_conflicts, 1000000)
+    #             print(problem_index, "," ,"LINEAR", ",", b, ",", beam_search1)
 
-                beam_search2 = beam_search(problems[problem_index], b, manhattan_heuristic, 1000000)
-                print(problem_index, "," ,"MANHATTAN",",", b, ",",  beam_search2)
+    #             beam_search2 = beam_search(problems[problem_index], b, manhattan_heuristic, 1000000)
+    #             print(problem_index, "," ,"MANHATTAN",",", b, ",",  beam_search2)
 
-                print("/---- b =", b, "-----\n")
+    #             print("/---- b =", b, "-----\n")
 
 
     # Teste 5 EASY
