@@ -43,7 +43,7 @@ def astar(start, end, h):
 
         # Testam daca s-a terminat
         if node.r == end.r:
-            break
+            return (time.time() - start_time, len(discovered), len(node.moves))
 
         # Mergem prin vecini
         for v_node in get_neighbours(node):
@@ -62,4 +62,4 @@ def astar(start, end, h):
 
 
     # TODO: Numar de stari stocate in memorie
-    return (time.time() - start_time, len(path), path)
+    return (time.time() - start_time, len(path), len(path.moves))

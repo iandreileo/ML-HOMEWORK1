@@ -38,7 +38,7 @@ def beam_search(start, B, h, limita):
                     
                     # 7. daca vreuna dintre dintre starile din succ este stare scop 
                     if i.r == i.solved().r:
-                        return (time.time() - start_time, True)
+                        return (time.time() - start_time, len(vizitat), len(i.moves))
 
         # 9. selectat = cele mai bune B stari, sortate dupa h(s)
         if len(succ) < B:
@@ -51,10 +51,6 @@ def beam_search(start, B, h, limita):
         for i in selectat:
             vizitat[i] = (None)
 
-        # print(len(vizitat))
-
-        # vizitat = vizitat.union(selectat)
-
         # 11. beam = selectat 
         beam = selectat
 
@@ -62,4 +58,4 @@ def beam_search(start, B, h, limita):
         if((time.time() - start_time) > MAX_EXECUTION_TIME):
             return (time.time() - start_time, None)
         
-    return (time.time() - start_time, False)
+    return (time.time() - start_time, len(vizitat), None)
