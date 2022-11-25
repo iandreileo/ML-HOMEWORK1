@@ -30,7 +30,7 @@ def run_beam_tests():
                 print("---- p =", problem_index, "-----")
                 print("---- b =", b, "-----")
 
-                beam_search1 = beam_search(problems[problem_index], b, hamming_heuristic, 1000000)
+                beam_search1 = beam_search(problems[problem_index], b, manhattan_heuristic, 1000000)
                 print(problem_index, "," ,"LINEAR", ",", b, ",", beam_search1)
 
                 # beam_search2 = beam_search(problems[problem_index], b, manhattan_heuristic, 1000000)
@@ -53,7 +53,7 @@ def run_beam_tests():
             print("---- p =", problem_index, "-----")
             print("---- b =", b, "-----")
 
-            beam_search1 = beam_search(problems[problem_index], b, hamming_heuristic, 500000)
+            beam_search1 = beam_search(problems[problem_index], b, manhattan_heuristic, 500000)
             print(problem_index, "," ,"LINEAR", ",", b, ",", beam_search1)
 
             # beam_search2 = beam_search(problems[problem_index], b, manhattan_heuristic, 500000)

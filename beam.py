@@ -42,10 +42,10 @@ def beam_search(start, B, h, limita):
 
         # 9. selectat = cele mai bune B stari, sortate dupa h(s)
         if len(succ) < B:
-            selectat = sorted(succ, key=lambda x: h(x, x.solved()))[0:len(succ)]
+            selectat = sorted(succ, key=lambda x: h(x))[0:len(succ)]
         
         else:
-            selectat = sorted(succ, key=lambda x: h(x, x.solved()))[0:B]
+            selectat = sorted(succ, key=lambda x: h(x))[0:B]
 
         # 10. vizitat = vizitat ∪ selectat
         for i in selectat:

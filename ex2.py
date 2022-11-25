@@ -15,12 +15,12 @@ sys.setrecursionlimit(10 ** 7)
 
 
 def Iteratie(stare, discrepante, h, vizitat, limita):
-    succ = []
+    succ = set()
 
     # 2. pentru fiecare s succesor al lui stare
     neighbours = []
     for i in get_neighbours(stare):
-        if i not in vizitat:
+        if (i is not None) and (i not in vizitat):
             neighbours.append(i)
 
 
@@ -30,8 +30,8 @@ def Iteratie(stare, discrepante, h, vizitat, limita):
             return True
 
         # 4. daca s /∈ vizitat atunci succ = succ ∪ {s}
-        if s not in vizitat:
-            succ.append(s)
+        if (s is not None) and (s not in vizitat):
+            succ.add(s)
     
     # 5. daca succ = ∅ atunci ıntoarce ESEC
     if len(succ) == 0:
@@ -43,13 +43,14 @@ def Iteratie(stare, discrepante, h, vizitat, limita):
         return False
     
     # 7. best = cea mai buna stare din succ, dupa h(s)
-    best = sorted(succ, key=lambda x: h(x, x.solved()))[0]
+    best = sorted(succ, key=lambda x: h(x))[0]
 
     # 8. daca discrepante = 0 atunci
     if discrepante == 0:
         # 9. ıntoarce Iteratie(best, 0, h, vizitat ∪ {best}, limita)
         vizitat_cu_best = copy.deepcopy(vizitat)
-        vizitat_cu_best.append(best)
+        vizitat_cu_best[best] = (None)
+        # vizitat_cu_best.append({best: (None)})
         return Iteratie(best, 0, h, vizitat_cu_best, limita)
 
     else:
@@ -60,20 +61,22 @@ def Iteratie(stare, discrepante, h, vizitat, limita):
         while len(succ):
 
             # 13. s = cea mai buna stare din succ, dupa h(s)
-            s = sorted(succ, key=lambda x: h(x, x.solved()))[0]
+            s = sorted(succ, key=lambda x: h(x))[0]
 
             # 14. succ = succ \ {s}
             succ.remove(s)
 
             # 15. daca Iteratie(s, discrepante − 1, h, vizitat ∪ {s}, limita) ıntoarce SUCCES
             vizitat_cu_s = copy.deepcopy(vizitat)
-            vizitat_cu_s.append(s)
+            vizitat_cu_s[s] = (None)
+            # vizitat_cu_s.append(s)
             if Iteratie(s, discrepante - 1, h, vizitat_cu_s, limita):
                 return True
 
         # 17. ıntoarce Iteratie(best, discrepante, h, vizitat ∪ {best}, limita)
         vizitat_cu_best = copy.deepcopy(vizitat)
-        vizitat_cu_best.append(best)
+        vizitat_cu_best[best] = (None)
+        # vizitat_cu_best.append(best)
         return Iteratie(best, discrepante, h, vizitat_cu_best, limita)
 
     
@@ -82,8 +85,7 @@ def GLDS(start, h, limita):
     start_time = time.time()
 
     # vizitat = {start}
-    vizitat = []
-    vizitat.append(start)
+    vizitat = {start: (None)}
 
     # discrepante = 0
     discrepante = 0
@@ -106,8 +108,22 @@ if __name__ == '__main__':
     input = f.readlines()
     f.close()
     problems = [NPuzzle.read_from_line(line) for line in input]
-    problem = problems[0]
+    problem = problems[2]
     problem.display()
 
-    print(GLDS(problem, linear_conflicts, 1000000))
+    print(GLDS(problem, manhattan_heuristic, 1000000))
+    
+
+    f = open("files/problems5-easy.txt", "r")
+    # f = open("files/problems4 copy.txt", "r")
+
+    input = f.readlines()
+    f.close()
+    problems = [NPuzzle.read_from_line(line) for line in input]
+    problem = problems[4]
+    problem.display()
+
+    print(GLDS(problem, manhattan_heuristic, 500000))
+
+
 

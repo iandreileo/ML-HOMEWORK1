@@ -21,7 +21,7 @@ def astar(start, end, h):
     # Frontiera, ca listă (heap) de tupluri (cost-total-estimat, nod)
     frontier = []
     
-    heappush(frontier, (0 + h(start, end), start))
+    heappush(frontier, (0 + h(start), start))
         
     # Nodurile descoperite ca dicționar nod -> (părinte, cost-până-la-nod)
     discovered = {start: (None, 0)}    
@@ -51,7 +51,7 @@ def astar(start, end, h):
 
             if v_node not in discovered or cost_pana_la_vecin < discovered[v_node][1]:
                 discovered[v_node] = (node, cost_pana_la_vecin)
-                heappush(frontier, (cost_pana_la_vecin + h(v_node, end), v_node))
+                heappush(frontier, (cost_pana_la_vecin + h(v_node), v_node))
             
 
     path = []

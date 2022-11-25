@@ -1,31 +1,41 @@
 import math
 
+from schelet import NPuzzle
+
 # Euristica pentru Manhattan
 # Aplicam formula din laborator
-def manhattan_heuristic(a, b):
-    array_a = a.r
-    array_b = b.r
-
+def manhattan_heuristic(stare):
+    # Setam suma ca fiind 0
     sum = 0
 
-    for i in range(len(array_a)):
-        if(type(array_a[i]) == str and type(array_b[i]) == str):
-            sum = sum + abs(0)
-        
-        elif (type(array_a[i]) == str):
-            sum = sum + abs(- array_b[i])
+    # Calculam care este lungimea unui rand/coloane
+    length = int(math.sqrt(len(stare.r)))
 
-        elif (type(array_b[i]) == str):
-            sum = sum + abs(array_a[i])
-        else:
-            sum = sum + abs(array_a[i] - array_b[i])
+    for i in range(len(stare.r)):
+        # Setam pozitia curenta
+        current = stare.r[i]
+
+        # Daca e diferita de caracterul spatiu, calculam pe ce pozitie ar fi trebuit sa fie defapt\
+        # Raportat la lungimea unui rand/coloane
+        if current != ' ':
+            y_normal = (current - 1) // length
+            if current % length == 0:
+                x_normal = length - 1
+            else:
+                x_normal = current % length - 1
+            
+            # Folosim formula manhattan de calcul dintre 2 puncte
+            sum += abs(i // length - y_normal) + abs (i % length - x_normal)
 
     return sum
 
 
 # Euristica pentru Hamming
 # Vedem cate pozitii sunt diferite
-def hamming_heuristic(a,b):
+def hamming_heuristic(a):
+
+    b = a.solved()
+
     if len(a.r) != len(b.r):
         return -1
     
@@ -62,7 +72,7 @@ def manhattan_heuristic_test(a, b):
     return sum
 
 
-def linear_conflicts(candidate, solved):
+def linear_conflicts(candidate):
     def count_conflicts(candidate_row, solved_row, size, ans=0):
         counts = [0 for x in range(size)]
         for i, tile_1 in enumerate(candidate_row):
@@ -84,8 +94,9 @@ def linear_conflicts(candidate, solved):
             return count_conflicts(candidate_row, solved_row, size, ans)
 
     size = int(math.sqrt(len(candidate.r)))
+    solved = candidate.solved()
 
-    res = manhattan_heuristic(candidate, solved)
+    res = manhattan_heuristic(candidate)
     candidate_rows = [[] for y in range(size)]
     candidate_columns = [[] for x in range(size)]
     solved_rows = [[] for y in range(size)]
