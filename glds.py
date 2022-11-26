@@ -17,10 +17,7 @@ def Iteratie(stare, discrepante, h, vizitat, limita):
 
     # 2. pentru fiecare s succesor al lui stare
     neighbours = []
-    for i in get_neighbours(stare):
-        if (i is not None) and (i not in vizitat):
-            neighbours.append(i)
-
+    neighbours = get_neighbours(stare)
 
     for s in neighbours:
         # 3. daca s este stare scop atunci ıntoarce SUCCES
@@ -48,13 +45,14 @@ def Iteratie(stare, discrepante, h, vizitat, limita):
         # 9. ıntoarce Iteratie(best, 0, h, vizitat ∪ {best}, limita)
         vizitat_cu_best = copy.deepcopy(vizitat)
         vizitat_cu_best[best] = (None)
+
         # vizitat_cu_best.append({best: (None)})
         return Iteratie(best, 0, h, vizitat_cu_best, limita)
 
     else:
         # 11. succ = succ \ {best}
         succ.remove(best)
-   
+
         # 12. cat timp succ ̸= ∅
         while len(succ):
 
@@ -67,14 +65,14 @@ def Iteratie(stare, discrepante, h, vizitat, limita):
             # 15. daca Iteratie(s, discrepante − 1, h, vizitat ∪ {s}, limita) ıntoarce SUCCES
             vizitat_cu_s = copy.deepcopy(vizitat)
             vizitat_cu_s[s] = (None)
-            # vizitat_cu_s.append(s)
+
             if Iteratie(s, discrepante - 1, h, vizitat_cu_s, limita):
                 return True
 
         # 17. ıntoarce Iteratie(best, discrepante, h, vizitat ∪ {best}, limita)
         vizitat_cu_best = copy.deepcopy(vizitat)
         vizitat_cu_best[best] = (None)
-        # vizitat_cu_best.append(best)
+
         return Iteratie(best, discrepante, h, vizitat_cu_best, limita)
 
     

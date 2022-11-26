@@ -15,7 +15,7 @@ def run_glds_tests():
     
     # Teste 6 EASY
     # print("\n\n=BEAM SEARCH 6 EASY=\n")
-    f = open("files/problems6-easy.txt", "r")
+    f = open("files/problems4-easy.txt", "r")
 
     input = f.readlines()
     f.close()
