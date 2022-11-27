@@ -113,3 +113,4 @@ def linear_conflicts(candidate):
     for i in range(size):
         res += count_conflicts(candidate_columns[i], solved_columns[i], size)
     return res
+

@@ -15,7 +15,7 @@ def run_glds_tests():
     
     # Teste 6 EASY
     # print("\n\n=BEAM SEARCH 6 EASY=\n")
-    f = open("files/problems4-easy.txt", "r")
+    f = open("files/problems6-easy.txt", "r")
 
     input = f.readlines()
     f.close()
@@ -23,11 +23,11 @@ def run_glds_tests():
 
     for problem_index in range(len(problems)):
 
-        glds1 = GLDS(problems[problem_index], linear_conflicts, 1000000)
-        print("6" +  ","  +  "EASY"+  "," + str(problem_index) + "," + "LINEAR" + "," + str(glds1[0]) + "," + str(glds1[1]) + "," + str(glds1[2]))
+        # glds1 = GLDS(problems[problem_index], linear_conflicts, 1000000)
+        # print("6" +  ","  +  "EASY"+  "," + str(problem_index) + "," + "LINEAR" + "," + str(glds1[0]) + "," + str(glds1[1]) + "," + str(glds1[2]))
 
-        glds2 = GLDS(problems[problem_index], manhattan_heuristic, 1000000)
-        print("6"+  ","  + "EASY"+  "," + str(problem_index) + "," + "MANHATTAN" + "," + str(glds2[0]) + "," + str(glds2[1]) + "," + str(glds2[2]))
+        glds2 = GLDS(problems[problem_index].clone(), manhattan_heuristic, 1000)
+        print("6"+  ","  + "EASY"+  "," + str(problem_index) + "," + "MANHATTAN""," + str(glds2[0]) + "," + str(glds2[1]) + "," + str(glds2[2]))
 
 
 
