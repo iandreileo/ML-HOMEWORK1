@@ -3,8 +3,6 @@
 import copy
 import time
 from astar import get_neighbours
-MAX_EXECUTION_TIME = 2
-
 
 def Iter(nivel: dict, discrepante, B, h, vizitat, limita):
     succ = {}
@@ -32,8 +30,6 @@ def Iter(nivel: dict, discrepante, B, h, vizitat, limita):
         nivel_urm = dict(succ[:B])
 
         vizitat.update(nivel_urm)
-        # vizitat_cu_nivelurm = copy.deepcopy(vizitat)
-        # vizitat_cu_nivelurm.update(nivel_urm)
         
         return Iter(nivel_urm, 0, B, h, vizitat, limita)
 
@@ -42,12 +38,9 @@ def Iter(nivel: dict, discrepante, B, h, vizitat, limita):
         while deja_explorate < len(succ):
             n = min(len(succ) - deja_explorate, B)
 
-            nivel_urm = succ[:deja_explorate][:n]
+            nivel_urm = dict(succ[:deja_explorate][:n])
 
             vizitat.update(nivel_urm)
-
-            # vizitat_cu_nivelurm = copy.deepcopy(vizitat)
-            # vizitat_cu_nivelurm.update(nivel_urm)
 
             val = Iter(nivel_urm, discrepante - 1, B, h,vizitat, limita )
 
@@ -56,24 +49,25 @@ def Iter(nivel: dict, discrepante, B, h, vizitat, limita):
 
             deja_explorate = deja_explorate + len(nivel_urm)
 
-        nivel_urm = succ[:B]
+        nivel_urm = dict(succ[:B])
 
-        # vizitat_cu_nivelurm = copy.deepcopy(vizitat)
-        # vizitat_cu_nivelurm.update(nivel_urm)
         vizitat.update(nivel_urm)
 
-        return Iter(nivel_urm, discrepante, B, vizitat, limita)
+        return Iter(nivel_urm, discrepante, B, h ,vizitat, limita)
 
 
 def BLDS(start, h, B, limita):
     start_time = time.time()
+
     vizitat = {start: (h(start))}
 
     discrepante = 0
 
     while True:
         iter = Iter({start: (h(start))}, discrepante, B, h, vizitat, limita)
-        current_time = time.time() - start_time
+
+        current_time = time.time() -  start_time
+
         if iter:
             iter.insert(0, current_time)
             return iter

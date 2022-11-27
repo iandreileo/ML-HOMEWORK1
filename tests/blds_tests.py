@@ -9,7 +9,7 @@ from astar import *
 from beam import *
 
     
-B = [1]   
+B = [10, 50, 100, 500, 1000]   
 
 def run_blds_tests():
 
