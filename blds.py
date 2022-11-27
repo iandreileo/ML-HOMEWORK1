@@ -10,7 +10,6 @@ def Iter(nivel: dict, discrepante, B, h, vizitat, limita):
     succ = {}
 
     for s in nivel:
-        # print(s)
         neighbours = get_neighbours(s)
 
         for neigh in neighbours:
@@ -32,10 +31,11 @@ def Iter(nivel: dict, discrepante, B, h, vizitat, limita):
     if discrepante == 0:
         nivel_urm = dict(succ[:B])
 
-        vizitat_cu_nivelurm = copy.deepcopy(vizitat)
-        vizitat_cu_nivelurm.update(nivel_urm)
+        vizitat.update(nivel_urm)
+        # vizitat_cu_nivelurm = copy.deepcopy(vizitat)
+        # vizitat_cu_nivelurm.update(nivel_urm)
         
-        return Iter(nivel_urm, 0, B, h, vizitat_cu_nivelurm, limita)
+        return Iter(nivel_urm, 0, B, h, vizitat, limita)
 
     else:
         deja_explorate = B
@@ -44,10 +44,12 @@ def Iter(nivel: dict, discrepante, B, h, vizitat, limita):
 
             nivel_urm = succ[:deja_explorate][:n]
 
-            vizitat_cu_nivelurm = copy.deepcopy(vizitat)
-            vizitat_cu_nivelurm.update(nivel_urm)
+            vizitat.update(nivel_urm)
 
-            val = Iter(nivel_urm, discrepante - 1, B, h,vizitat_cu_nivelurm, limita )
+            # vizitat_cu_nivelurm = copy.deepcopy(vizitat)
+            # vizitat_cu_nivelurm.update(nivel_urm)
+
+            val = Iter(nivel_urm, discrepante - 1, B, h,vizitat, limita )
 
             if val:
                 return True
@@ -56,10 +58,11 @@ def Iter(nivel: dict, discrepante, B, h, vizitat, limita):
 
         nivel_urm = succ[:B]
 
-        vizitat_cu_nivelurm = copy.deepcopy(vizitat)
-        vizitat_cu_nivelurm.update(nivel_urm)
+        # vizitat_cu_nivelurm = copy.deepcopy(vizitat)
+        # vizitat_cu_nivelurm.update(nivel_urm)
+        vizitat.update(nivel_urm)
 
-        return Iter(nivel_urm, discrepante, B, vizitat_cu_nivelurm, limita)
+        return Iter(nivel_urm, discrepante, B, vizitat, limita)
 
 
 def BLDS(start, h, B, limita):

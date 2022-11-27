@@ -9,7 +9,7 @@ from astar import *
 from beam import *
 
     
-B = [10, 50, 100, 500, 1000]   
+B = [1]   
 
 def run_blds_tests():
 
@@ -49,8 +49,8 @@ def run_blds_tests():
             blds1 = BLDS(problems[problem_index], linear_conflicts, b, 500000)
             print("5" +  ","  +  "EASY"+  "," + str(problem_index) + "," + "LINEAR" + "," + str(blds1[0]) + "," + str(blds1[1]) + "," + str(blds1[2]) + "," + str(b))
 
-            # blds2 = BLDS(problems[problem_index], manhattan_heuristic, b, 500000)
-            # print("5" +  ","  +  "EASY"+  "," + str(problem_index) + "," + "MANHATTAN" + "," + str(blds2[0]) + "," + str(blds2[1]) + "," + str(blds2[2]) + "," + str(b))
+            blds2 = BLDS(problems[problem_index], manhattan_heuristic, b, 500000)
+            print("5" +  ","  +  "EASY"+  "," + str(problem_index) + "," + "MANHATTAN" + "," + str(blds2[0]) + "," + str(blds2[1]) + "," + str(blds2[2]) + "," + str(b))
 
     # Teste 4 EASY
     # print("\n\n=BEAM SEARCH 4 EASY=\n")
@@ -74,8 +74,8 @@ def run_blds_tests():
     # NORMAL
 
 
-    # Teste 6 NORMAL
-    # print("\n\n=BEAM SEARCH 6 NORMAL=\n")
+    # Teste 6 SIMPLE
+    # print("\n\n=BEAM SEARCH 6 SIMPLE=\n")
     f = open("files/problems6.txt", "r")
 
     input = f.readlines()
@@ -87,14 +87,14 @@ def run_blds_tests():
         for b in list(reversed(B)):
 
             blds1 = BLDS(problems[problem_index], linear_conflicts, b, 1000000)
-            print("6" +  ","  +  "NORMAL"+  "," + str(problem_index) + "," + "LINEAR" + "," + str(blds1[0]) + "," + str(blds1[1]) + "," + str(blds1[2]) + "," + str(b))
+            print("6" +  ","  +  "SIMPLE"+  "," + str(problem_index) + "," + "LINEAR" + "," + str(blds1[0]) + "," + str(blds1[1]) + "," + str(blds1[2]) + "," + str(b))
 
             blds2 = BLDS(problems[problem_index], manhattan_heuristic, b, 1000000)
-            print("6" +  ","  +  "NORMAL"+  "," + str(problem_index) + "," + "MANHATTAN" + "," + str(blds2[0]) + "," + str(blds2[1]) + "," + str(blds2[2]) + "," + str(b))
+            print("6" +  ","  +  "SIMPLE"+  "," + str(problem_index) + "," + "MANHATTAN" + "," + str(blds2[0]) + "," + str(blds2[1]) + "," + str(blds2[2]) + "," + str(b))
 
 
-    # Teste 5 NORMAL
-    # print("\n\n=BEAM SEARCH 5 NORMAL=\n")
+    # Teste 5 SIMPLE
+    # print("\n\n=BEAM SEARCH 5 SIMPLE=\n")
     f = open("files/problems5.txt", "r")
 
     input = f.readlines()
@@ -106,13 +106,13 @@ def run_blds_tests():
         for b in list(reversed(B)):
 
             blds1 = BLDS(problems[problem_index], linear_conflicts, b, 500000)
-            print("5" +  ","  +  "NORMAL"+  "," + str(problem_index) + "," + "LINEAR" + "," + str(blds1[0]) + "," + str(blds1[1]) + "," + str(blds1[2]) + "," + str(b))
+            print("5" +  ","  +  "SIMPLE"+  "," + str(problem_index) + "," + "LINEAR" + "," + str(blds1[0]) + "," + str(blds1[1]) + "," + str(blds1[2]) + "," + str(b))
 
             blds2 = BLDS(problems[problem_index], manhattan_heuristic, b, 500000)
-            print("5" +  ","  +  "NORMAL"+  "," + str(problem_index) + "," + "MANHATTAN" + "," + str(blds2[0]) + "," + str(blds2[1]) + "," + str(blds2[2]) + "," + str(b))
+            print("5" +  ","  +  "SIMPLE"+  "," + str(problem_index) + "," + "MANHATTAN" + "," + str(blds2[0]) + "," + str(blds2[1]) + "," + str(blds2[2]) + "," + str(b))
 
-    # Teste 4 NORMAL
-    # print("\n\n=BEAM SEARCH 4 NORMAL=\n")
+    # Teste 4 SIMPLE
+    # print("\n\n=BEAM SEARCH 4 SIMPLE=\n")
     f = open("files/problems4.txt", "r")
 
     input = f.readlines()
@@ -124,10 +124,10 @@ def run_blds_tests():
         for b in list(reversed(B)):
 
             blds1 = BLDS(problems[problem_index], linear_conflicts, b, 100000)
-            print("4" +  ","  +  "NORMAL"+  "," + str(problem_index) + "," + "LINEAR" + "," + str(blds1[0]) + "," + str(blds1[1]) + "," + str(blds1[2]) + "," + str(b))
+            print("4" +  ","  +  "SIMPLE"+  "," + str(problem_index) + "," + "LINEAR" + "," + str(blds1[0]) + "," + str(blds1[1]) + "," + str(blds1[2]) + "," + str(b))
 
             blds2 = BLDS(problems[problem_index], manhattan_heuristic, b, 100000)
-            print("4" +  ","  +  "NORMAL"+  "," + str(problem_index) + "," + "MANHATTAN" + "," + str(blds2[0]) + "," + str(blds2[1]) + "," + str(blds2[2]) + "," + str(b))
+            print("4" +  ","  +  "SIMPLE"+  "," + str(problem_index) + "," + "MANHATTAN" + "," + str(blds2[0]) + "," + str(blds2[1]) + "," + str(blds2[2]) + "," + str(b))
 
 
  
