@@ -41,10 +41,9 @@ def Iteratie(stare, discrepante, h, vizitat, limita):
     # 8. daca discrepante = 0 atunci
     if discrepante == 0:
         # 9. ıntoarce Iteratie(best, 0, h, vizitat ∪ {best}, limita)
-        vizitat_cu_best = copy.deepcopy(vizitat)
-        vizitat_cu_best[best] = (succ[best])
+        # vizitat[best] = (succ[best], succ)
 
-        return Iteratie(best, 0, h, vizitat_cu_best, limita)
+        return Iteratie(best, 0, h, vizitat + [best], limita)
 
     else:
         # 11. succ = succ \ {best}
@@ -57,30 +56,26 @@ def Iteratie(stare, discrepante, h, vizitat, limita):
             s = sorted(succ.items(), key=lambda item: item[1])[0][0]
 
             # 15. daca Iteratie(s, discrepante − 1, h, vizitat ∪ {s}, limita) ıntoarce SUCCES
-            vizitat_cu_s = copy.deepcopy(vizitat)
-            vizitat_cu_s[s] = (succ[s])
+            # vizitat[s] = (succ[s])
 
             # 14. succ = succ \ {s}
             succ.pop(s)
 
-            if Iteratie(s, discrepante - 1, h, vizitat_cu_s, limita):
+            if Iteratie(s, discrepante - 1, h, vizitat + [s], limita):
                 return True
 
         # 17. ıntoarce Iteratie(best, discrepante, h, vizitat ∪ {best}, limita)
         
-        vizitat_cu_best = copy.deepcopy(vizitat)
-        # print(succ)
-        vizitat_cu_best[best] = (h(best))
+        # vizitat[best] = (h(best))
 
-        return Iteratie(best, discrepante, h, vizitat_cu_best, limita)
+        return Iteratie(best, discrepante, h, vizitat + [best], limita)
 
     
 
 def GLDS(start, h, limita):
     start_time = time.time()
 
-    # vizitat = {start}
-    vizitat = {start: (h(start))}
+    vizitat = [start]
 
     # discrepante = 0
     discrepante = 0
@@ -89,7 +84,7 @@ def GLDS(start, h, limita):
     while True:
 
         # daca Iteratie(start, discrepante, h, vizitat, limita) ıntoarce SUCCES
-        if Iteratie(stare = start, discrepante=discrepante, h=h, vizitat=copy.deepcopy(vizitat), limita=limita):
+        if Iteratie(stare = start, discrepante=discrepante, h=h, vizitat=vizitat, limita=limita):
             return (time.time() - start_time, len(vizitat), vizitat)
         
         # discrepante = discrepante + 1

@@ -60,6 +60,4 @@ def astar(start, end, h):
         path.append(current_node)
         current_node = discovered[current_node][0]
 
-
-    # TODO: Numar de stari stocate in memorie
     return (time.time() - start_time, len(path), len(path.moves))
