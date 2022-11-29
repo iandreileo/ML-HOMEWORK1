@@ -89,7 +89,6 @@ def linear_conflicts(candidate):
     # Aplicam euristica manhattan
     res = manhattan_heuristic(candidate)
 
-
     # Initializam si incarcam
     # Starile initiale si cele rezolvate
     candidate_rows = [[] for y in range(size)]
@@ -97,7 +96,6 @@ def linear_conflicts(candidate):
 
     solved_rows = [[] for y in range(size)]
     solved_columns = [[] for x in range(size)]
-
 
     for y in range(size):
         for x in range(size):
